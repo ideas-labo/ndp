@@ -1,0 +1,29 @@
+FROM centos:7
+
+RUN yum update -y && \
+    yum install -y gcc gcc-c++ make wget tar gzip \
+    cmake zlib-devel \
+    libffi-devel ncurses-devel
+
+WORKDIR /tmp
+RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-XXX/llvm-project-XXX.src.tar.xz && \
+    tar -xvf llvm-project-XXX.src.tar.xz && \
+    cd llvm-project-XXX.src && \
+    mkdir build && cd build && \
+    cmake \
+    -DCMAKE_INSTALL_PREFIX=/usr/local/clang \
+    -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DLLVM_TARGETS_TO_BUILD="host" \
+    ../llvm && \
+    make -j$(nproc) && \
+    make install && \
+    cd ../.. && \
+    rm -rf llvm-project-XXX*
+
+RUN echo "/usr/local/clang/lib" >> /etc/ld.so.conf.d/clang.conf && \
+    ldconfig
+
+ENV PATH="/usr/local/clang/bin:${PATH}"
+
+CMD ["/bin/bash"]

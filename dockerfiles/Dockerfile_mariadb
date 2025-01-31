@@ -1,0 +1,30 @@
+FROM centos:7
+
+RUN yum update -y && \
+    yum install -y \
+    epel-release \
+    libaio \
+    wget \
+    nano \
+    tcp_wrappers-libs \
+    && yum clean all
+
+RUN wget --no-check-certificate -O /tmp/mysql.tar.gz https://archive.mariadb.org/mariadb-XXX/bintar-linux-x86_64/mariadb-XXX-linux-x86_64.tar.gz && \
+    tar -xf /tmp/mysql.tar.gz -C /usr/local/ && \
+    mv /usr/local/mariadb-XXX-linux-x86_64 /usr/local/mysql && \
+    rm /tmp/mysql.tar.gz
+
+ENV PATH="/usr/local/mysql/bin:${PATH}"
+
+RUN groupadd mysql && \
+    useradd -r -g mysql -s /bin/false mysql
+
+RUN mkdir -p /var/lib/mysql && \
+    chown -R mysql:mysql /usr/local/mysql && \
+    chown -R mysql:mysql /var/lib/mysql
+
+COPY my.cnf /etc/my.cnf
+
+RUN /usr/local/mysql/scripts/mysql_install_db --user=mysql --basedir=/usr/local/mysql --datadir=/var/lib/mysql --tmpdir=/var/tmp
+
+CMD ["/usr/local/mysql/bin/mysqld"]

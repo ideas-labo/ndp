@@ -1,0 +1,27 @@
+FROM centos:7
+
+RUN yum update -y && \
+    yum install -y gcc gcc-c++ make wget tar gzip bzip2 \
+    libgcc glibc-devel binutils \
+    m4 perl flex bison texinfo
+
+
+WORKDIR /tmp
+RUN wget https://ftp.gnu.org/gnu/gcc/gcc-XXX/gcc-XXX.tar.gz && \
+    tar -xzvf gcc-XXX.tar.gz && \
+    cd gcc-XXX && \
+    ./configure \
+    --prefix=/usr/local/gcc \
+    --enable-languages=c,c++ \
+    --disable-multilib && \
+    make -j$(nproc) && \
+    make install && \
+    cd .. && \
+    rm -rf gcc-XXX*
+
+RUN echo "/usr/local/gcc/lib64" >> /etc/ld.so.conf.d/gcc.conf && \
+    ldconfig
+
+ENV PATH="/usr/local/gcc/bin:${PATH}"
+
+CMD ["/bin/bash"]

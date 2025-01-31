@@ -1,0 +1,47 @@
+FROM centos:7
+
+RUN yum update -y && \
+    yum install -y gcc make wget tar gzip \
+    pcre-devel openssl-devel \
+    expat-devel
+
+ARG HTTPD_VERSION=xxx
+ARG APR_VERSION=xxx
+ARG APR_UTIL_VERSION=xxx
+
+WORKDIR /tmp
+RUN wget https://downloads.apache.org/apr/apr-${APR_VERSION}.tar.gz && \
+    tar -xzf apr-${APR_VERSION}.tar.gz && \
+    cd apr-${APR_VERSION} && \
+    ./configure --prefix=/usr/local/apr && \
+    make -j$(nproc) && \
+    make install && \
+    cd ..
+
+RUN wget https://downloads.apache.org/apr/apr-util-${APR_UTIL_VERSION}.tar.gz && \
+    tar -xzf apr-util-${APR_UTIL_VERSION}.tar.gz && \
+    cd apr-util-${APR_UTIL_VERSION} && \
+    ./configure --prefix=/usr/local/apr-util \
+    --with-apr=/usr/local/apr && \
+    make -j$(nproc) && \
+    make install && \
+    cd ..
+
+RUN wget https://downloads.apache.org/httpd/httpd-${HTTPD_VERSION}.tar.gz && \
+    tar -xzf httpd-${HTTPD_VERSION}.tar.gz && \
+    cd httpd-${HTTPD_VERSION} && \
+    ./configure \
+    --prefix=/usr/local/apache2 \
+    --with-apr=/usr/local/apr \
+    --with-apr-util=/usr/local/apr-util \
+    --enable-ssl \
+    --enable-so && \
+    make -j$(nproc) && \
+    make install && \
+    cd .. && \
+    rm -rf httpd-${HTTPD_VERSION}*
+
+ENV PATH="/usr/local/apache2/bin:${PATH}"
+
+WORKDIR /usr/local/apache2
+CMD ["/usr/local/apache2/bin/apachectl", "-K", "start"]
