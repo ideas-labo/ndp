@@ -1,0 +1,53 @@
+startservers the startservers directive sets the number of child server processes created on startup. as the number of processes is dynamically controlled depending on the load, there is usually little reason to adjust this parameter.
+mod_proxy_balancer.timeout Specifies the timeout value for connections to the backend server.
+ProxyErrorOverride Overrides error responses from the backend server with custom error messages.
+<virtualhost cself are used to enclose a group of directives that will apply only to a particular virtual host. when the server receives a request for a document on a particular virtual host, it uses the configuration directives enclosed in the cself section.
+-g Enables debugging information in the compiled output.
+-fprefetch-loop-arrays Prefetches loop arrays.
+-O3 Enables level 3 optimization.
+-flto Enables link-time optimization.
+-O0 Disables optimization.
+-O1 Enables level 1 optimization. optimize.
+-O2 Enables level 2 optimization. optimize even more.
+-Ofast Enables fast optimization. disregard strict standards compliance.
+-fbounds-check Enables bounds checking.
+-finline-functions Enables function inlining.
+-fno-devirtualize Disables devirtualization.
+-mdisable-fpregs Disables floating-point registers.
+-Wsequence-point Warns about sequence point violations.
+-Os Optimizes for size. enables all -O2 optimizations except those that often increase code size.
+-fno-inline Disables inlining of functions.
+-fsanitize Enables sanitizers.
+-O Enables optimization.
+query_cache_size Specifies the amount of memory allocated for caching query results. Larger sizes can improve performance for repetitive queries but might increase memory usage.
+index_merge Enables the use of index merge optimization.
+max_recursive_iterations  The max_recursive_iterations variable limits the number of recursive calls that a single recursive CTE can make, preventing runaway recursive queries.
+--log-slave-updates When --log-slave-updates is enabled, a replica writes updates that it receives from a primary server to its own binary log.
+join_cache_level It controls which join operations can be executed using join buffers. Odd numbers are used for plain join buffers, while even numbers are for linked buffers. This option helps manage how the database handles join operations, potentially optimizing performance depending on the specific use case and database configuration.
+innodb_buffer_pool_size the size in bytes of the buffer pool, the memory area where innodb caches table and index data.
+delay_key_write this variable specifies how to use delayed key writes. it applies only to myisam tables. delayed key writing causes key buffers not to be flushed between writes. if delay_key_write is enabled for a table, the key buffer is not flushed for the table on every index update, but only when the table is closed. this speeds up writes on keys a lot, but if you use this feature, you should add automatic checking of all myisam tables by starting the server with the cother system variable set.
+innodb_sort_buffer_size specifies the size of sort buffers used to sort data during creation of an innodb index.
+lower_case_table_names if set to 0, table names are stored as specified and comparisons are case-sensitive. if set to 1, table names are stored in lowercase on disk and comparisons are not case sensitive.
+sort_buffer_size each session that must perform a sort allocates a buffer of this size.
+read_buffer_size each thread that does a sequential scan for a myisam table allocates a buffer of this size (in bytes) for each table it scans.
+query_cache_type Determines the query cache operation mode.
+innodb_file_per_table Stores each InnoDB table in its own .ibd file.
+innodb_log_file_size size in bytes of each innodb redo log file in the log group. the combined size can be no more than 4gb prior to mariadb 10.0, and no more than 512gb in mariadb 10.0 and later. larger values mean less disk i/o due to less flushing checkpoint activity, but also slower recovery from a crash.
+innodb_fill_factor Specifies a percentage for InnoDB page fill factor.
+innodb_flush_log_at_trx_commit controls the balance between strict acid compliance for commit operations and higher performance that is possible when commit related i/o operations are rearranged and done in batches. you can achieve better performance by changing the default value but then you can lose transactions in a crash. vother: the default setting of vother is required for full acid compliance. logs are written and flushed to disk at each transaction commit. vother: with a setting of vother, logs are written after each transaction commit and flushed to disk once per second. transactions for which logs have not been flushed can be lost in a crash. vother: with a setting of vother, logs are written and flushed to disk once per second. transactions for which logs have not been flushed can be lost in a crash.
+skip-thread-priority Disable using thread priorities for faster response time.
+innodb_adaptive_hash_index whether the innodb adaptive hash index is enabled or disabled. it may be desirable, depending on your workload, to dynamically enable or disable adaptive hash indexing to improve query performance. because the adaptive hash index may not be useful for all workloads, conduct benchmarks with it both enabled and disabled, using realistic workloads.
+innodb_flush_method Specifies the method InnoDB uses to flush data to disk.
+innodb_change_buffering whether innodb performs change buffering, an optimization that delays write operations to secondary indexes so that the i/o operations can be performed sequentially.
+relay_log_recovery Automatically recovers the relay log in case of corruption.
+storage_engine Specifies the storage engine for the database. In MongoDB, available values include "wiredTiger" and "inMemory". The storage engine determines how data is stored, both in memory and on disk.
+checkpoint A point in the database to which changes are recorded.
+binlog_format Sets the format of the binary log (STATEMENT, ROW, MIXED).
+sync_binlog Controls how often the binary log is synchronized to disk.
+old_alter_table Forces old-style ALTER TABLE behavior for certain operations.
+innodb_stats_persistent Keeps InnoDB statistics persistent across server restarts.
+optimizer_switch Controls the behavior of the query optimizer.
+index_merge Enables the use of index merge optimization.
+performance_schema Provides a way to inspect internal execution of the server at runtime to analyze performance issues without causing any change in server behavior. The Performance Schema collects performance metrics and is highly configurable, allowing for different levels of granularity in data collection and analysis.
+foreign_key_checks if set to venable (the default), foreign key constraints are checked. if set to vdisable, foreign key constraints are ignored, with a couple of exceptions.
+sslverifydepth this directive sets how deeply mod_ssl should verify before deciding that the clients don't have a valid certificate. a depth of vother means that self-signed client certificates are accepted only, the default depth of vother means the client certificate can be self-signed or has to be signed by a ca which is directly known to the server.
