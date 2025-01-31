@@ -1,0 +1,15 @@
+BufferSize
+SendBufferSize
+ReceiveBufferSize
+ProxyReceiveBufferSize
+ProxyIOBufferSize
+ProxyHTMLBufSize
+ScriptLogBuffer
+SSLRenegBufferSize
+CacheSocacheReadSize
+AuthDigestShmemSize
+LDAPCacheEntries
+LDAPOpCacheEntries
+LDAPSharedCacheSize
+ISAPIReadAheadBuffer
+ReadBufferSize
