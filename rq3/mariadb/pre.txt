@@ -1,0 +1,3 @@
+innodb_sort_buffer_size
+innodb_buffer_pool_size
+query_cache_size
