@@ -1,0 +1,6 @@
+sort_buffer_size
+query_cache_size
+innodb_buffer_pool_size
+innodb_log_file_size
+read_buffer_size
+innodb_sort_buffer_size
