@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 3.Using the command line: run the following command:
 ```
-python roberta_ppp.py
+python roberta_PPP.py
 ```
 
 You can find the prediction in the data_pp folder
