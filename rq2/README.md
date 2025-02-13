@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ### Use a trained model
 1.Use the data we reserve in the *data_pr* folder or replace it with your own data.
 
-2.Download the [trained model](https://huggingface.co/BitMars/roberta_pf)
+2.Download the [trained model](https://huggingface.co/BitMars/roberta_pf), all model files are placed in the *model_pr_* folder. Please modify the *modelpath* in the code to correspond to different systems.
 
 3.Using the command line: run the following command:
 
@@ -29,7 +29,7 @@ You can find the rankings in the *data_pr* folder, replace the ***modelpath*** w
 
 ### Train your own model
 
-1.Use the data we reserve in the *data_pr* folder or replace it with your own data.
+1.Use the data we reserve in the *data_pr* folder or replace it with your own data. Please modify the *modelpath* in the code to ensure the correct path.
 
 2.Download [pre-trained model](https://huggingface.co/FacebookAI/roberta-base)
 
