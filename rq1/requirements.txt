@@ -1,3 +1,4 @@
+--find-links https://download.pytorch.org/whl/cu121
 numpy==1.24.4
 torch==2.3.1+cu121
 datasets==2.20.0
