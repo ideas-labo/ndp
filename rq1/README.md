@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ### Use a trained model
 1.Use the data we reserve in the *data_pp* folder or replace it with your own data.
 
-2.Download the [trained model](https://huggingface.co/BitMars/roberta_pp)
+2.Download the [trained model](https://huggingface.co/BitMars/roberta_pp), and put all model files in the *model_pp* folder.
 
 3.Using the command line: run the following command:
 ```
@@ -30,7 +30,7 @@ You can find the prediction in the data_pp folder
 
 1.Use the data we reserve in the *data_pp* folder or replace it with your own data.
 
-2.Download [pre-trained model](https://huggingface.co/FacebookAI/roberta-base)
+2.Download [pre-trained model](https://huggingface.co/FacebookAI/roberta-base), and put all model files in the *model_pp* folder.
 
 3.If you use CPU training, please mask all GPU calls.
 
